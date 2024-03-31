@@ -1,7 +1,7 @@
 import Calendar from "@/components/calendar";
 
 const Home = () => {
-  return <div className="py-2">
+  return <div className="my-2 container">
     <Calendar />
   </div>
 };
