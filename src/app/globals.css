@@ -17,17 +17,18 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  justify-content: center;
+  align-items: center;
+  display: flex;  
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+table, td, th {
+  border-width: 1px;
+  border-color: black;
 }
