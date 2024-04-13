@@ -19,11 +19,8 @@ export default function RootLayout({
   return (
     <html>
       <head>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-0C46PW5Y0C"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-0C46PW5Y0C" async />
+        <Script id="google-analytics">
           {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
@@ -40,7 +37,6 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>{children}</body>
-      <GoogleAnalytics gaId="G-0C46PW5Y0C" />
     </html>
   );
 }
