@@ -40,7 +40,7 @@ export default function RootLayout({
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-white`}>
         <GoogleTagManager gtmId="GTM-KTV4L9P8" />
         {children}
       </body>

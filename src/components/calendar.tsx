@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const THU = [
   "Chủ nhật",
   "Thứ Hai",
@@ -8,7 +10,25 @@ const THU = [
   "Thứ 7",
 ];
 
-const Calendar = () => {
+async function getData() {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept-Version", "v1");
+  myHeaders.append("Authorization", `Client-ID ${process.env.API_KEY}`);
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    next: { revalidate: 86400 },
+  };
+
+  return fetch("https://api.unsplash.com/photos/random", requestOptions)
+    .then((response) => response.json())
+    .then((res) => res?.urls?.raw);
+}
+
+const Calendar = async () => {
+  const imageSrc = await getData();
+
   const renderDay = () => {
     const days = [];
     const today = new Date();
@@ -57,18 +77,32 @@ const Calendar = () => {
   };
 
   return (
-    <table className="shadow-lg mx-auto rounded-lg border">
-      <tbody>
-        <tr className="border bg-warning text-white">
-          {THU.map((item) => (
-            <th className="thu" key={Math.random()}>
-              {item}
-            </th>
-          ))}
-        </tr>
-        {renderDay()}
-      </tbody>
-    </table>
+    <div className="col-6 col-12">
+      <div
+        style={{ width: "100%", height: 200, position: "relative" }}
+        className="mb-2"
+      >
+        <Image
+          className="image-fluid w-100"
+          alt="lich van nien"
+          src={imageSrc}
+          layout="fill"
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+      <table className="shadow mx-auto rounded-lg border">
+        <tbody>
+          <tr className="border bg-warning text-white">
+            {THU.map((item) => (
+              <th className="thu" key={Math.random()}>
+                {item}
+              </th>
+            ))}
+          </tr>
+          {renderDay()}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
