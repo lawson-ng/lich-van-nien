@@ -23,8 +23,14 @@ const Calendar = () => {
     while (date.getMonth() === month) {
       if (date.getDate() === today.getDate()) {
         days.push(
-          <td className={"day text-center d-flex justify-content-center align-items-center"}>
-            <p className="today m-0 mx-auto bg-danger rounded-circle text-center">{date.getDate()}</p>
+          <td
+            className={
+              "day text-center d-flex justify-content-center align-items-center"
+            }
+          >
+            <p className="today m-0 mx-auto bg-danger rounded-circle text-center">
+              {date.getDate()}
+            </p>
           </td>
         );
       } else if (date.getDay() === 0 || date.getDay() === 6) {
@@ -52,14 +58,16 @@ const Calendar = () => {
 
   return (
     <table className="shadow-lg mx-auto rounded-lg border">
-      <tr className="border bg-warning text-white">
-        {THU.map((item) => (
-          <th className="thu" key={Math.random()}>
-            {item}
-          </th>
-        ))}
-      </tr>
-      {renderDay()}
+      <tbody>
+        <tr className="border bg-warning text-white">
+          {THU.map((item) => (
+            <th className="thu" key={Math.random()}>
+              {item}
+            </th>
+          ))}
+        </tr>
+        {renderDay()}
+      </tbody>
     </table>
   );
 };
